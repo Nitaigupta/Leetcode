@@ -1,0 +1,36 @@
+class Solution {
+    public int smallestDivisor(int[] arr, int th) {
+         Arrays.sort(arr);
+     return (divisor(arr,th));
+        
+    }
+     private static int divisor(int[] arr, int th) {
+   int ans =0;
+   int s=1;
+   int e= arr[arr.length-1];
+   while (s<=e) {
+    int mid = (s+e)/2;;
+    if (isPossible(arr,th,mid)==true) {
+        ans=mid;
+        e=mid-1;
+        
+    }
+    else{
+        s=mid+1;
+    }
+
+   }
+   return ans;
+    }
+      private static boolean isPossible(int[] arr, int th, int mid) {
+        int div=0;
+        for (int i = 0; i < arr.length; i++) {
+            div+=Math.ceilDiv(arr[i], mid);
+        }
+        if (div<=th) {
+            return true;
+        }
+        return false;
+       
+    }
+}
